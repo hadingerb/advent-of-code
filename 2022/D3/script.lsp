@@ -1,4 +1,4 @@
-;;;; Advent of Code Day 2: Rucksack sabatoge
+;;;; Advent of Code Day 3: Rucksack sabatoge
 (load "../common.lsp")
 
 (defvar alphabet (coerce "!abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" 'list))
