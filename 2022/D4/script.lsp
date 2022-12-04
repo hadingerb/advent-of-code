@@ -6,11 +6,11 @@
 
 ;;; each pairing is "AA-BB,XX-YY"
 (dolist (pairing *input*)
-    (let* ((pairs (split-str pairing ","))
-        (lo-fir (parse-integer (nth 0 (split-str (nth 0 pairs) "-"))))
-        (hi-fir (parse-integer (nth 1 (split-str (nth 0 pairs) "-"))))
-        (lo-sec (parse-integer (nth 0 (split-str (nth 1 pairs) "-"))))
-        (hi-sec (parse-integer (nth 1 (split-str (nth 1 pairs) "-")))))
+    (let* ((pairs (split-str pairing #\,))
+        (lo-fir (parse-integer (nth 0 (split-str (nth 0 pairs) #\-))))
+        (hi-fir (parse-integer (nth 1 (split-str (nth 0 pairs) #\-))))
+        (lo-sec (parse-integer (nth 0 (split-str (nth 1 pairs) #\-))))
+        (hi-sec (parse-integer (nth 1 (split-str (nth 1 pairs) #\-)))))
 
         ;;(format t "~a ~a ~a ~a ~a~%" pairing lo-fir hi-fir lo-sec hi-sec)
         ;; complete
