@@ -22,6 +22,21 @@ This is how you block comment :)
     )
 )
 
+;;; Transpose list of lists
+(defun transpose (lst)
+    (let ((lst_trans '()))
+        (loop for idx from 0 to (- (length (nth 0 lst)) 1) do
+            (let ((sublst '()))
+                (loop for idx2 from 0 to (- (length lst) 1) do
+                    (setq sublst (cons (nth idx (nth idx2 lst)) sublst)))
+                (setq lst_trans (cons (reverse sublst) lst_trans))))
+        (return-from transpose lst_trans))
+)
+
+(defun update-nth (lst n val)
+  (setf (elt lst n) val) lst
+)
+
 ;; to return multiple things (eventually will probably want)
 ;; values
 ;; multiple-value-bind
