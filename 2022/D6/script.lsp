@@ -1,4 +1,4 @@
-;;;; Advent of Code Day unique-length: Cleaning Camp
+;;;; Advent of Code Day 6: Finding the code
 (load "../common.lsp")
 
 (defvar characters (coerce (nth 0 *input*) 'list))

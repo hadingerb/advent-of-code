@@ -1,11 +1,11 @@
-;;;; Advent of Code Day 4: Cleaning Camp
+;;;; Advent of Code Day 5: Moving Crates
 (load "../common.lsp")
 
 (defvar towers_trans '())
 (defvar towers '())
 (defvar moves '())
 
-(dolist (line *input*)
+(d/list (line *input*)
     (when (not (eq nil (position #\[ line)))
         (let ((line_parts (coerce line 'list))
             (tower_trans '()))

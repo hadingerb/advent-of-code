@@ -1,4 +1,4 @@
-;;;; Advent of Code Day unique-length: Cleaning Camp
+;;;; Advent of Code Day 7: Cleaning a server
 (load "../common.lsp")
 
 (defvar line-idx -1)
