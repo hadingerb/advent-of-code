@@ -37,8 +37,4 @@ This is how you block comment :)
   (setf (elt lst n) val) lst
 )
 
-;; to return multiple things (eventually will probably want)
-;; values
-;; multiple-value-bind
-
 (defvar *input* (read-file-lines "input.txt"))
