@@ -33,8 +33,60 @@ This is how you block comment :)
         (return-from transpose lst_trans))
 )
 
+;;; in place edit of element in list
 (defun update-nth (lst n val)
   (setf (elt lst n) val) lst
 )
 
+;; sort pairs (only pairs of strings (D16)
+(defun sorted-pairs (p1 p2)
+    (equal (sort p1 'string<) (sort p2 'string<))
+)
+
+;;; all possible combinations of two lists (of strings)
+(defun combinations (lst1 lst2 remove-same remove-dupes)
+    (let ((combos '()))
+        (dolist (el1 lst1)
+            (dolist (el2 lst2)
+                (tagbody
+                (when (and (equal el1 el2) remove-same) (go skip))
+                (setq combos (append combos (list (list el1 el2))))
+                skip)))
+        (if remove-dupes (remove-duplicates combos :test 'sorted-pairs) combos))
+)
+
+;;; my first copied code off of stack-overflow :(
+(defun hash-keys (hash-map)
+  (loop for key being the hash-keys of hash-map collect key))
+
+(defstruct dijk-result
+    (distance #xFFFFFFFF :type integer)
+    (prev-node "" :type string))
+(defun dijkstra (hash-map s-node search-key)
+    ;; setup initial return map
+    (let ((ret-hash-map (make-hash-table :test 'equal)))
+    (setf (gethash s-node ret-hash-map) (make-dijk-result :distance 0 :prev-node ""))
+    (dolist (h-key (hash-keys hash-map))
+        (setf (gethash h-key ret-hash-map) (make-dijk-result :distance #xFFFFFFFF :prev-node "")))
+
+    (let ((to-search (list s-node)))
+        (loop while (not (zerop (length to-search))) do
+
+            (let* ((n (car to-search))
+                    (orig-map-item (gethash n hash-map))
+                    (dijk-map-item (gethash n ret-hash-map))
+                (cur-steps (dijk-result-distance dijk-map-item)))
+
+                (dolist (neighbor (search-key orig-map-item))
+                    (let* ((nei-n (gethash neighbor ret-hash-map))
+                        (when (> (dijk-result-distance nei-n) (+ cur-steps 1))
+                            (progn
+                                (setf (dijk-result-distance nei-n) (+ cur-steps 1))
+                                (setq (dijk-result-prev-node nei-n) n)
+                                (setq to-search (append to-search (list neighbor)))))))))
+            (setq to-search (cdr to-search))))
+    (node-distance-from-S (gethash end-node elev-map)))
+)
+
 (defvar *input* (read-file-lines "input.txt"))
+
