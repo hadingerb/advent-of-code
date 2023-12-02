@@ -4,7 +4,7 @@
 
 defmodule Day1_1 do
   def run do
-    input = C.ri1
+    input = C.ri
 
     total = for val <- input, reduce: 0 do
       acc ->
@@ -18,7 +18,7 @@ end
 
 defmodule Day1_2 do
   def run do
-    input = C.ri2
+    input = C.ri
 
     num_map = %{
       "1" => 1, "one" => 1,
