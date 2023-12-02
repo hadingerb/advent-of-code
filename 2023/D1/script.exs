@@ -35,7 +35,6 @@ defmodule Day1_2 do
     total = for val <- input, reduce: 0 do
       acc ->
         numbers = Regex.scan(~r/(?=([0-9]|one|two|three|four|five|six|seven|eight|nine))/, val)
-        IO.inspect(numbers)
         intsl = Enum.map(numbers, fn x -> List.last(x) end)
         f = List.first(intsl); l = List.last(intsl)
         acc + num_map[f] * 10 + num_map[l] 
